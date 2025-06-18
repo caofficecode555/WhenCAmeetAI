@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Services - AI-Powered GST Solutions | When CA Meet AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* GST Services Grid */
+        .gst-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .service-card h3 {
+            color: #1e293b;
+            font-size: 1.4rem;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: #475569;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* GST Return Types */
+        .gst-returns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .return-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .return-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .return-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .return-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .return-frequency {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* AI Features */
+        .ai-features {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ai-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .ai-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        /* GST Calculator */
+        .calculator {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 3rem 0;
+        }
+
+        .calc-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gst-services, .gst-returns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-brain"></i> When CA Meet AI
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="itr-filing.html" class="nav-link">ITR Filing</a></li>
+                <li><a href="gst-services.html" class="nav-link">GST Services</a></li>
+                <li><a href="registrations.html" class="nav-link">Registrations</a></li>
+                <li><a href="startup-services.html" class="nav-link">Startup Services</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-receipt"></i> AI-Powered GST Services</h1>
+            <p>Complete GST Solutions with Advanced AI Technology for Seamless Compliance</p>
+        </div>
+    </section>
+
+    <!-- GST Services Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Comprehensive GST Services</h2>
+            
+            <div class="gst-services">
+                <div class="service-card">
+                    <div class="price-badge">₹2,999/month</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>GST Registration</h3>
+                    </div>
+                    <p>Complete GST registration process with AI-powered document verification</p>
+                    <ul class="service-features">
+                        <li>Online GST registration in 24-48 hours</li>
+                        <li>AI document verification & validation</li>
+                        <li>GSTIN generation & certificate</li>
+                        <li>Bank account linking</li>
+                        <li>Digital signature setup</li>
+                        <li>Post-registration compliance guidance</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="price-badge">₹1,999/month</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>GST Return Filing</h3>
+                    </div>
+                    <p>Automated GST return preparation and filing with AI reconciliation</p>
+                    <ul class="service-features">
+                        <li>GSTR-1, GSTR-3B automated filing</li>
+                        <li>AI-powered data reconciliation</li>
+                        <li>Real-time error detection</li>
+                        <li>Input tax credit optimization</li>
+                        <li>Late fee calculation & payment</li>
+                        <li>Monthly compliance calendar</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="price-badge">₹4,999/month</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>GST Reconciliation</h3>
+                    </div>
+                    <p>Advanced AI reconciliation between books, returns, and GSTN data</p>
+                    <ul class="service-features">
+                        <li>Purchase vs GSTR-2A reconciliation</li>
+                        <li>Sales vs GSTR-1 matching</li>
+                        <li>ITC reconciliation & optimization</li>
+                        <li>Mismatch identification & resolution</li>
+                        <li>Monthly reconciliation reports</li>
+                        <li>Compliance score tracking</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="price-badge">₹7,999</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>GST Audit & Assessment</h3>
+                    </div>
+                    <p>AI-powered GST audit support and assessment handling</p>
+                    <ul class="service-features">
+                        <li>Pre-audit compliance review</li>
+                        <li>Notice response & representation</li>
+                        <li>Assessment order analysis</li>
+                        <li>Appeal preparation & filing</li>
+                        <li>Tax liability optimization</li>
+                        <li>Expert CA representation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="price-badge">₹3,999/month</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>GST Advisory & Planning</h3>
+                    </div>
+                    <p>Strategic GST planning and advisory services with AI insights</p>
+                    <ul class="service-features">
+                        <li>GST impact analysis for transactions</li>
+                        <li>Supply chain optimization</li>
+                        <li>Input tax credit planning</li>
+                        <li>Pricing strategy recommendations</li>
+                        <li>Compliance risk assessment</li>
+                        <li>Monthly advisory sessions</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="price-badge">₹5,999</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h3>GST Refund Services</h3>
+                    </div>
+                    <p>Efficient GST refund processing with AI-powered documentation</p>
+                    <ul class="service-features">
+                        <li>Refund eligibility analysis</li>
+                        <li>Automated refund application</li>
+                        <li>Supporting document preparation</li>
+                        <li>Refund status tracking</li>
+                        <li>Query resolution support</li>
+                        <li>Expert follow-up assistance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GST Return Types -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">GST Return Types We Handle</h2>
+            
+            <div class="gst-returns">
+                <div class="return-card">
+                    <div class="return-header">
+                        <div class="return-title">GSTR-1</div>
+                        <div class="return-frequency">Monthly/Quarterly</div>
+                    </div>
+                    <p><strong>Outward Supplies</strong></p>
+                    <p>Details of outward supplies of goods or services</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>• B2B, B2C supply details</li>
+                        <li>• Export & deemed export</li>
+                        <li>• Credit & debit notes</li>
+                    </ul>
+                </div>
+
+                <div class="return-card">
+                    <div class="return-header">
+                        <div class="return-title">GSTR-3B</div>
+                        <div class="return-frequency">Monthly</div>
+                    </div>
+                    <p><strong>Summary Return</strong></p>
+                    <p>Summary of outward supplies, input tax credit, and tax payment</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>• Tax liability summary</li>
+                        <li>• ITC claimed</li>
+                        <li>• Tax payment details</li>
+                    </ul>
+                </div>
+
+                <div class="return-card">
+                    <div class="return-header">
+                        <div class="return-title">GSTR-4</div>
+                        <div class="return-frequency">Quarterly</div>
+                    </div>
+                    <p><strong>Composition Scheme</strong></p>
+                    <p>Return for composition taxpayers</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>• Composition supply details</li>
+                        <li>• Tax payment at lower rates</li>
+                        <li>• Simplified compliance</li>
+                    </ul>
+                </div>
+
+                <div class="return-card">
+                    <div class="return-header">
+                        <div class="return-title">GSTR-9</div>
+                        <div class="return-frequency">Annual</div>
+                    </div>
+                    <p><strong>Annual Return</strong></p>
+                    <p>Comprehensive annual GST return</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>• Annual turnover details</li>
+                        <li>• ITC reconciliation</li>
+                        <li>• Tax paid during the year</li>
+                    </ul>
+                </div>
+
+                <div class="return-card">
+                    <div class="return-header">
+                        <div class="return-title">GSTR-9C</div>
+                        <div class="return-frequency">Annual</div>
+                    </div>
+                    <p><strong>Audit Certification</strong></p>
+                    <p>GST audit report by CA/CMA</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>• Reconciliation statement</li>
+                        <li>• CA/CMA certification</li>
+                        <li>• Compliance verification</li>
+                    </ul>
+                </div>
+
+                <div class="return-card">
+                    <div class="return-header">
+                        <div class="return-title">GSTR-11</div>
+                        <div class="return-frequency">Monthly</div>
+                    </div>
+                    <p><strong>UIN Holders</strong></p>
+                    <p>Return for UIN holders receiving supplies</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>• Inward supply details</li>
+                        <li>• Refund claim eligible</li>
+                        <li>• Embassy, UN bodies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features -->
+    <section class="section">
+        <div class="container">
+            <div class="ai-features">
+                <h2 style="text-align: center; color: #1e293b; margin-bottom: 1rem;">AI-Powered GST Features</h2>
+                <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">Revolutionary technology that transforms GST compliance</p>
+                
+                <div class="ai-grid">
+                    <div class="ai-card">
+                        <div class="ai-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4>Auto Data Extraction</h4>
+                        <p>AI extracts GST data from invoices, bills, and accounting software automatically</p>
+                    </div>
+                    
+                    <div class="ai-card">
+                        <div class="ai-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Smart Reconciliation</h4>
+                        <p>Intelligent matching of purchase data with GSTR-2A and sales with GSTR-1</p>
+                    </div>
+                    
+                    <div class="ai-card">
+                        <div class="ai-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h4>Error Detection</h4>
+                        <p>Advanced algorithms detect errors, mismatches, and compliance gaps before filing</p>
+                    </div>
+                    
+                    <div class="ai-card">
+                        <div class="ai-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>ITC Optimization</h4>
+                        <p>AI identifies maximum eligible input tax credit and prevents claim rejections</p>
+                    </div>
+                    
+                    <div class="ai-card">
+                        <div class="ai-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>Deadline Alerts</h4>
+                        <p>Smart reminder system ensures never miss any GST filing or payment deadline</p>
+                    </div>
+                    
+                    <div class="ai-card">
+                        <div class="ai-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Predictive Analytics</h4>
+                        <p>Forecast GST liability, cash flow impact, and compliance requirements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GST Calculator -->
+    <section class="section">
+        <div class="container">
+            <div class="calculator">
+                <h2 style="text-align: center; color: #1e293b; margin-bottom: 1rem;">
+                    <i class="fas fa-calculator"></i> GST Calculator
+                </h2>
+                <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">
+                    Calculate GST amount instantly with our AI-powered tool
+                </p>
+                
+                <form class="calc-form" onsubmit="calculateGST(event)">
+                    <div class="form-group">
+                        <label for="amount">Amount (₹)</label>
+                        <input type="number" id="amount" placeholder="e.g., 10000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gst-rate">GST Rate (%)</label>
+                        <select id="gst-rate" required>
+                            <option value="">Select GST Rate</option>
+                            <option value="0">0% (Exempted)</option>
+                            <option value="5">5% (Essential goods)</option>
+                            <option value="12">12% (Standard goods)</option>
+                            <option value="18">18% (Most goods/services)</option>
+                            <option value="28">28% (Luxury goods)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="calc-type">Calculation Type</label>
+                        <select id="calc-type" required>
+                            <option value="">Select Type</option>
+                            <option value="exclusive">Exclusive (Add GST)</option>
+                            <option value="inclusive">Inclusive (Extract GST)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; align-items: end;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calculator"></i> Calculate GST
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="gst-result" style="margin-top: 2rem; padding: 2rem; background: #f8fafc; border-radius: 15px; display: none;">
+                    <h4>GST Calculation Result:</h4>
+                    <div id="gst-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 When CA Meet AI. All rights reserved. | AI-Powered GST Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateGST(event) {
+            event.preventDefault();
+            
+            const amount = parseFloat(document.getElementById('amount').value);
+            const gstRate = parseFloat(document.getElementById('gst-rate').value);
+            const calcType = document.getElementById('calc-type').value;
+            
+            let baseAmount, gstAmount, totalAmount;
+            
+            if (calcType === 'exclusive') {
+                // Add GST to the amount
+                baseAmount = amount;
+                gstAmount = (amount * gstRate) / 100;
+                totalAmount = amount + gstAmount;
+            } else {
+                // Extract GST from the amount
+                totalAmount = amount;
+                baseAmount = amount / (1 + gstRate / 100);
+                gstAmount = amount - baseAmount;
+            }
+            
+            // Calculate CGST, SGST for domestic (assuming 50-50 split for inter-state)
+            const cgst = gstAmount / 2;
+            const sgst = gstAmount / 2;
+            
+            const resultDiv = document.getElementById('gst-result');
+            const contentDiv = document.getElementById('gst-content');
+            
+            contentDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div style="background: white; padding: 1rem; border-radius: 10px; text-align: center;">
+                        <h5 style="color: #667eea; margin-bottom: 0.5rem;">Base Amount</h5>
+                        <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">₹${baseAmount.toFixed(2)}</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 10px; text-align: center;">
+                        <h5 style="color: #667eea; margin-bottom: 0.5rem;">GST Amount (${gstRate}%)</h5>
+                        <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">₹${gstAmount.toFixed(2)}</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 10px; text-align: center;">
+                        <h5 style="color: #667eea; margin-bottom: 0.5rem;">Total Amount</h5>
+                        <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">₹${totalAmount.toFixed(2)}</p>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; padding: 1rem; background: #e0f2fe; border-radius: 10px;">
+                    <h5 style="color: #0277bd; margin-bottom: 0.5rem;">GST Breakdown (Intra-State):</h5>
+                    <p style="margin: 0.2rem 0;">CGST (${gstRate/2}%): ₹${cgst.toFixed(2)}</p>
+                    <p style="margin: 0.2rem 0;">SGST (${gstRate/2}%): ₹${sgst.toFixed(2)}</p>
+                    <p style="margin: 0.2rem 0; font-size: 0.9rem; color: #666;">For Inter-State: IGST (${gstRate}%): ₹${gstAmount.toFixed(2)}</p>
+                </div>
+                <div style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); border-radius: 10px;">
+                    <p style="margin: 0; color: #667eea; font-weight: bold;">
+                        <i class="fas fa-lightbulb"></i> Need help with GST compliance? 
+                        <a href="#" style="color: #667eea;">Get AI-powered GST consultation!</a>
+                    </p>
+                </div>
+            `;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

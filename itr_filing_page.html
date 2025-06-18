@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITR Filing - AI-Powered Income Tax Services | When CA Meet AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ITR Types Grid */
+        .itr-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .itr-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .itr-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-radius: 0 0 0 100%;
+        }
+
+        .itr-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .itr-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .itr-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .itr-card h3 {
+            color: #1e293b;
+            font-size: 1.4rem;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #475569;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* AI Features Section */
+        .ai-features {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .ai-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ai-feature {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .ai-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
+
+        /* Quick Calculator */
+        .calculator-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 3rem 0;
+        }
+
+        .calc-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .itr-types {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-brain"></i> When CA Meet AI
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="itr-filing.html" class="nav-link">ITR Filing</a></li>
+                <li><a href="gst-services.html" class="nav-link">GST Services</a></li>
+                <li><a href="registrations.html" class="nav-link">Registrations</a></li>
+                <li><a href="startup-services.html" class="nav-link">Startup Services</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-file-invoice-dollar"></i> AI-Powered ITR Filing</h1>
+            <p>Smart, Fast & Error-Free Income Tax Return Filing with Advanced AI Technology</p>
+        </div>
+    </section>
+
+    <!-- ITR Types Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">ITR Filing Services</h2>
+            
+            <div class="itr-types">
+                <div class="itr-card">
+                    <div class="price-tag">₹999</div>
+                    <div class="itr-header">
+                        <div class="itr-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>ITR-1 (SAHAJ)</h3>
+                    </div>
+                    <p><strong>For:</strong> Salaried individuals with income up to ₹50 lakhs</p>
+                    <ul class="features-list">
+                        <li>AI-powered data extraction from Form 16</li>
+                        <li>Automatic TDS reconciliation</li>
+                        <li>Smart deduction optimization</li>
+                        <li>E-filing with digital signature</li>
+                        <li>ITR-V processing</li>
+                        <li>Expert CA review</li>
+                    </ul>
+                </div>
+
+                <div class="itr-card">
+                    <div class="price-tag">₹1,499</div>
+                    <div class="itr-header">
+                        <div class="itr-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>ITR-2</h3>
+                    </div>
+                    <p><strong>For:</strong> Individuals with capital gains, multiple house properties</p>
+                    <ul class="features-list">
+                        <li>Capital gains computation with AI</li>
+                        <li>House property income calculation</li>
+                        <li>Foreign income reporting</li>
+                        <li>Schedule AL automation</li>
+                        <li>Advanced tax planning suggestions</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+
+                <div class="itr-card">
+                    <div class="price-tag">₹2,499</div>
+                    <div class="itr-header">
+                        <div class="itr-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>ITR-3</h3>
+                    </div>
+                    <p><strong>For:</strong> Business income, professional income</p>
+                    <ul class="features-list">
+                        <li>P&L and Balance Sheet preparation</li>
+                        <li>Business income computation</li>
+                        <li>Professional tax optimization</li>
+                        <li>Depreciation calculations</li>
+                        <li>Work-in-progress valuation</li>
+                        <li>GST reconciliation</li>
+                    </ul>
+                </div>
+
+                <div class="itr-card">
+                    <div class="price-tag">₹3,999</div>
+                    <div class="itr-header">
+                        <div class="itr-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>ITR-4 (SUGAM)</h3>
+                    </div>
+                    <p><strong>For:</strong> Presumptive business income (44AD/44ADA)</p>
+                    <ul class="features-list">
+                        <li>Presumptive income calculations</li>
+                        <li>44AD/44ADA compliance</li>
+                        <li>Minimum tax optimization</li>
+                        <li>Digital payment benefits</li>
+                        <li>Quarterly advance tax planning</li>
+                        <li>Audit exemption guidance</li>
+                    </ul>
+                </div>
+
+                <div class="itr-card">
+                    <div class="price-tag">₹7,999</div>
+                    <div class="itr-header">
+                        <div class="itr-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>ITR-5</h3>
+                    </div>
+                    <p><strong>For:</strong> Firms, LLPs, AOPs, BOIs</p>
+                    <ul class="features-list">
+                        <li>Partnership/LLP return filing</li>
+                        <li>Partner-wise income allocation</li>
+                        <li>Book profit calculations</li>
+                        <li>MAT provisions compliance</li>
+                        <li>Advanced reconciliation</li>
+                        <li>Dedicated CA support</li>
+                    </ul>
+                </div>
+
+                <div class="itr-card">
+                    <div class="price-tag">₹12,999</div>
+                    <div class="itr-header">
+                        <div class="itr-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>ITR-6</h3>
+                    </div>
+                    <p><strong>For:</strong> Companies (other than claiming exemption u/s 11)</p>
+                    <ul class="features-list">
+                        <li>Corporate tax return filing</li>
+                        <li>Book profit vs taxable income</li>
+                        <li>MAT credit calculations</li>
+                        <li>Dividend distribution tax</li>
+                        <li>Transfer pricing compliance</li>
+                        <li>Senior CA consultation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="ai-features">
+                <h2 style="text-align: center; color: #1e293b; margin-bottom: 1rem;">AI-Powered Features</h2>
+                <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">Experience the future of tax filing with our advanced AI technology</p>
+                
+                <div class="ai-features-grid">
+                    <div class="ai-feature">
+                        <div class="ai-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4>Smart Data Extraction</h4>
+                        <p>AI automatically extracts data from Form 16, bank statements, and investment proofs</p>
+                    </div>
+                    
+                    <div class="ai-feature">
+                        <div class="ai-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4>Auto Tax Calculation</h4>
+                        <p>Intelligent algorithms ensure accurate tax calculations and optimal deductions</p>
+                    </div>
+                    
+                    <div class="ai-feature">
+                        <div class="ai-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Error Detection</h4>
+                        <p>Advanced AI scans for potential errors and inconsistencies before filing</p>
+                    </div>
+                    
+                    <div class="ai-feature">
+                        <div class="ai-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Tax Optimization</h4>
+                        <p>AI suggests legal tax-saving opportunities you might have missed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Steps -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our AI-Enhanced Filing Process</h2>
+            
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>Upload Documents</h4>
+                    <p>Simply upload your Form 16, investment proofs, and bank statements. Our AI will handle the rest.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>AI Data Processing</h4>
+                    <p>Advanced algorithms extract and validate all relevant information automatically.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>Smart Review</h4>
+                    <p>Our AI performs comprehensive checks while expert CAs review for accuracy.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>E-Filing & Tracking</h4>
+                    <p>Secure e-filing with real-time status updates and ITR-V processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Calculator -->
+    <section class="section">
+        <div class="container">
+            <div class="calculator-section">
+                <h2 style="text-align: center; color: #1e293b; margin-bottom: 1rem;">
+                    <i class="fas fa-calculator"></i> Quick Tax Calculator
+                </h2>
+                <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">
+                    Get an instant estimate of your tax liability
+                </p>
+                
+                <form class="calc-form" onsubmit="calculateTax(event)">
+                    <div class="form-group">
+                        <label for="income">Annual Income (₹)</label>
+                        <input type="number" id="income" placeholder="e.g., 800000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regime">Tax Regime</label>
+                        <select id="regime" required>
+                            <option value="">Select Regime</option>
+                            <option value="old">Old Regime</option>
+                            <option value="new">New Regime</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deductions">Total Deductions (₹)</label>
+                        <input type="number" id="deductions" placeholder="e.g., 150000">
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; align-items: end;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calculator"></i> Calculate Tax
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="tax-result" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 10px; display: none;">
+                    <h4>Tax Calculation Result:</h4>
+                    <div id="result-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 When CA Meet AI. All rights reserved. | AI-Powered ITR Filing Services</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateTax(event) {
+            event.preventDefault();
+            
+            const income = parseFloat(document.getElementById('income').value);
+            const regime = document.getElementById('regime').value;
+            const deductions = parseFloat(document.getElementById('deductions').value) || 0;
+            
+            let tax = 0;
+            let taxableIncome = income;
+            
+            if (regime === 'old') {
+                taxableIncome = income - deductions;
+            }
+            
+            // Tax calculation based on current slabs
+            if (taxableIncome <= 250000) {
+                tax = 0;
+            } else if (taxableIncome <= 500000) {
+                tax = (taxableIncome - 250000) * 0.05;
+            } else if (taxableIncome <= 1000000) {
+                tax = 12500 + (taxableIncome - 500000) * 0.2;
+            } else {
+                tax = 112500 + (taxableIncome - 1000000) * 0.3;
+            }
+            
+            // Add cess
+            tax = tax * 1.04;
+            
+            const resultDiv = document.getElementById('tax-result');
+            const contentDiv = document.getElementById('result-content');
+            
+            contentDiv.innerHTML = `
+                <p><strong>Taxable Income:</strong> ₹${taxableIncome.toLocaleString('en-IN')}</p>
+                <p><strong>Tax Liability:</strong> ₹${Math.round(tax).toLocaleString('en-IN')}</p>
+                <p><strong>Effective Tax Rate:</strong> ${((tax/income)*100).toFixed(2)}%</p>
+                <div style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); border-radius: 8px;">
+                    <p style="margin: 0; color: #667eea; font-weight: bold;">
+                        <i class="fas fa-lightbulb"></i> Want to optimize your taxes? 
+                        <a href="#" style="color: #667eea;">Get AI-powered tax planning consultation!</a>
+                    </p>
+                </div>
+            `;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

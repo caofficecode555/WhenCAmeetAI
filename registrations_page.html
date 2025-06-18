@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Registrations - AI-Powered Company Formation | When CA Meet AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Registration Types */
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .registration-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registration-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .registration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .registration-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .registration-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .registration-card h3 {
+            color: #1e293b;
+            font-size: 1.4rem;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #475569;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 1rem 2rem;
+            position: relative;
+            background: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: #667eea;
+            border-radius: 50%;
+            top: 1.5rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 3rem 0;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .table-content {
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+        }
+
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .registration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::after {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 4rem;
+                padding-right: 1rem;
+            }
+
+            .timeline-item::after {
+                left: 1rem;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-brain"></i> When CA Meet AI
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="itr-filing.html" class="nav-link">ITR Filing</a></li>
+                <li><a href="gst-services.html" class="nav-link">GST Services</a></li>
+                <li><a href="registrations.html" class="nav-link">Registrations</a></li>
+                <li><a href="startup-services.html" class="nav-link">Startup Services</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-building"></i> AI-Powered Business Registrations</h1>
+            <p>Complete Business Registration Solutions from Startup to Corporation with AI Automation</p>
+        </div>
+    </section>
+
+    <!-- Registration Types Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Business Registration Services</h2>
+            
+            <div class="registration-grid">
+                <div class="registration-card">
+                    <div class="price-tag">₹999</div>
+                    <div class="registration-header">
+                        <div class="registration-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Proprietorship Registration</h3>
+                    </div>
+                    <p>Simple business registration for individual entrepreneurs</p>
+                    <ul class="features-list">
+                        <li>GST registration included</li>
+                        <li>Current account opening assistance</li>
+                        <li>Trade license support</li>
+                        <li>Digital signature certificate</li>
+                        <li>Compliance calendar setup</li>
+                        <li>AI document verification</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Registration
+                        </button>
+                    </div>
+                </div>
+
+                <div class="registration-card">
+                    <div class="price-tag">₹4,999</div>
+                    <div class="registration-header">
+                        <div class="registration-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Partnership Firm</h3>
+                    </div>
+                    <p>Partnership registration for multi-partner businesses</p>
+                    <ul class="features-list">
+                        <li>Partnership deed drafting</li>
+                        <li>PAN & TAN application</li>
+                        <li>Bank account opening</li>
+                        <li>GST registration</li>
+                        <li>AI-powered deed review</li>
+                        <li>Compliance setup</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Registration
+                        </button>
+                    </div>
+                </div>
+
+                <div class="registration-card">
+                    <div class="price-tag">₹7,999</div>
+                    <div class="registration-header">
+                        <div class="registration-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Limited Liability Partnership (LLP)</h3>
+                    </div>
+                    <p>Modern business structure with limited liability</p>
+                    <ul class="features-list">
+                        <li>DIN & DSC for partners</li>
+                        <li>LLP agreement drafting</li>
+                        <li>ROC filing & incorporation</li>
+                        <li>PAN, TAN & GST registration</li>
+                        <li>Current account opening</li>
+                        <li>AI compliance monitoring</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Registration
+                        </button>
+                    </div>
+                </div>
+
+                <div class="registration-card">
+                    <div class="price-tag">₹12,999</div>
+                    <div class="registration-header">
+                        <div class="registration-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Private Limited Company</h3>
+                    </div>
+                    <p>Complete corporate structure with maximum benefits</p>
+                    <ul class="features-list">
+                        <li>Name approval & incorporation</li>
+                        <li>DIN, DSC & company registration</li>
+                        <li>MOA & AOA drafting</li>
+                        <li>Share certificates & seal</li>
+                        <li>PAN, TAN & GST registration</li>
+                        <li>Current account & compliance setup</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Registration
+                        </button>
+                    </div>
+                </div>
+
+                <div class="registration-card">
+                    <div class="price-tag">₹19,999</div>
+                    <div class="registration-header">
+                        <div class="registration-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Public Limited Company</h3>
+                    </div>
+                    <p>Large-scale business registration for public offerings</p>
+                    <ul class="features-list">
+                        <li>Complete incorporation process</li>
+                        <li>Regulatory compliance setup</li>
+                        <li>Share transfer procedures</li>
+                        <li>Board resolution templates</li>
+                        <li>Annual compliance calendar</li>
+                        <li>AI-powered compliance tracking</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Registration
+                        </button>
+                    </div>
+                </div>
+
+                <div class="registration-card">
+                    <div class="price-tag">₹14,999</div>
+                    <div class="registration-header">
+                        <div class="registration-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Section 8 Company (NGO)</h3>
+                    </div>
+                    <p>Non-profit organization registration for social causes</p>
+                    <ul class="features-list">
+                        <li>Section 8 license application</li>
+                        <li>MOA & AOA for NGO</li>
+                        <li>12A & 80G registration</li>
+                        <li>FCRA application support</li>
+                        <li>Tax exemption setup</li>
+                        <li>Compliance management</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Start Registration
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="section">
+        <div class="container">
+            <div class="comparison-table">
+                <div class="table-header">
+                    <h2>Business Structure Comparison</h2>
+                    <p>Choose the right structure for your business needs</p>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Proprietorship</th>
+                                <th>Partnership</th>
+                                <th>LLP</th>
+                                <th class="highlight">Private Ltd</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Liability</strong></td>
+                                <td>Unlimited</td>
+                                <td>Unlimited</td>
+                                <td>Limited</td>
+                                <td class="highlight">Limited</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Minimum Members</strong></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td class="highlight">2</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Maximum Members</strong></td>
+                                <td>1</td>
+                                <td>20</td>
+                                <td>No limit</td>
+                                <td class="highlight">200</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Registration Cost</strong></td>
+                                <td>₹999</td>
+                                <td>₹4,999</td>
+                                <td>₹7,999</td>
+                                <td class="highlight">₹12,999</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Audit Requirement</strong></td>
+                                <td>If turnover > ₹1Cr</td>
+                                <td>If turnover > ₹1Cr</td>
+                                <td>If turnover > ₹40L</td>
+                                <td class="highlight">Mandatory</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fundraising</strong></td>
+                                <td>Limited</td>
+                                <td>Limited</td>
+                                <td>Moderate</td>
+                                <td class="highlight">Excellent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tax Benefits</strong></td>
+                                <td>Basic</td>
+                                <td>Good</td>
+                                <td>Good</td>
+                                <td class="highlight">Maximum</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">AI-Powered Registration Process</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4><i class="fas fa-edit"></i> Step 1: Smart Application</h4>
+                        <p>AI-powered form filling with automatic document validation and name availability check.</p>
+                        <small><strong>Time:</strong> 10 minutes</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4><i class="fas fa-search"></i> Step 2: Document Verification</h4>
+                        <p>AI verifies all documents and checks for compliance requirements automatically.</p>
+                        <small><strong>Time:</strong> 2-4 hours</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4><i class="fas fa-file-signature"></i> Step 3: Government Filing</h4>
+                        <p>Automatic filing with ROC/government portals using digital signatures.</p>
+                        <small><strong>Time:</strong> 1-3 days</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4><i class="fas fa-certificate"></i> Step 4: Certificate Delivery</h4>
+                        <p>Digital delivery of incorporation certificate and other documents.</p>
+                        <small><strong>Time:</strong> 7-15 days</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4><i class="fas fa-cog"></i> Step 5: Post-Incorporation Setup</h4>
+                        <p>PAN, TAN, GST registration and bank account opening assistance.</p>
+                        <small><strong>Time:</strong> 15-30 days</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Additional Registration Services</h2>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">
+                        <i class="fas fa-trademark"></i>
+                    </div>
+                    <h4>Trademark Registration</h4>
+                    <p>Protect your brand with trademark registration and AI-powered search.</p>
+                    <p style="color: #667eea; font-weight: bold; margin-top: 1rem;">Starting ₹7,999</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">
+                        <i class="fas fa-copyright"></i>
+                    </div>
+                    <h4>Copyright Registration</h4>
+                    <p>Secure your creative works with comprehensive copyright protection.</p>
+                    <p style="color: #667eea; font-weight: bold; margin-top: 1rem;">Starting ₹4,999</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Patent Filing</h4>
+                    <p>Protect your innovations with patent registration and AI prior art search.</p>
+                    <p style="color: #667eea; font-weight: bold; margin-top: 1rem;">Starting ₹19,999</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>FSSAI License</h4>
+                    <p>Food business registration with AI compliance checking.</p>
+                    <p style="color: #667eea; font-weight: bold; margin-top: 1rem;">Starting ₹2,999</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4>Import Export Code</h4>
+                    <p>IEC registration for international trade with AI documentation.</p>
+                    <p style="color: #667eea; font-weight: bold; margin-top: 1rem;">Starting ₹3,999</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4>Shop & Establishment</h4>
+                    <p>Local business registration with AI compliance management.</p>
+                    <p style="color: #667eea; font-weight: bold; margin-top: 1rem;">Starting ₹1,999</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 When CA Meet AI. All rights reserved. | AI-Powered Business Registration Services</p>
+        </div>
+    </footer>
+</body>
+</html>
